@@ -1,4 +1,5 @@
 package com.mycompany.lpiproject;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -8,6 +9,7 @@ import java.util.Scanner;
  * @author prfneto
  */
 public class historicoCompra {
+
     ArrayList<Compra> compras = new ArrayList<Compra>();
     private int j = 0;
     private double total = 0;
@@ -15,65 +17,62 @@ public class historicoCompra {
     private double totalCliente = 0;
     private int ponto;
     private int i = 0;
-    
-    public void adicionarHistorico(Compra compra){
+
+    public void adicionarHistorico(Compra compra) {
         compras.add(compra);
         j++;
     }
-    
-    public double valorTotal(){
-        for (Compra e: compras){
+
+    public double valorTotal() {
+        for (Compra e : compras) {
             total = total + e.getValor();
         }
         return total;
     }
-    
-    public double valorMedio(){
-        for (Compra e: compras){
+
+    public double valorMedio() {
+        for (Compra e : compras) {
             media = media + e.getValor();
         }
-        return media/j;
+        return media / j;
     }
-    
-    public double compraCliente(Cliente cliente){
-        for (Compra e: compras){
-            if(e.getCliente().getNome() == cliente.getNome()){
+
+    public double compraCliente(Cliente cliente) {
+        for (Compra e : compras) {
+            if (e.getCliente().getNome() == cliente.getNome()) {
                 totalCliente = totalCliente + e.getValor();
             }
         }
-     return totalCliente;       
+        return totalCliente;
     }
-    
-    public int pontoCliente(Cliente cliente){
+
+    public int pontoCliente(Cliente cliente) {
         ponto = 0;
-        for (Compra e: compras){
-            if(e.getCliente().getNome() == cliente.getNome()){
+        for (Compra e : compras) {
+            if (e.getCliente().getCodigoCliente() == cliente.getCodigoCliente()) {
                 ponto++;
             }
         }
         ponto--;
-        return ponto;       
+        return ponto;
     }
-    
-    public void removerCompra(int posicao){
+
+    public void removerCompra(int posicao) {
         try {
             compras.remove(posicao);
-        } catch (IndexOutOfBoundsException e){
-            System.out.println("Erro: posição inválida");     
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Erro: posição inválida");
         }
     }
-    
-    public void verificaCliente(Cliente cliente){
-        i = 0;
-        for (Compra e: compras){
-            if(e.getCliente().getNome() == cliente.getNome() && i == 0){
-                System.out.println("O cliente se encontra no histórico de compras.");
-                i++;
+
+    public void verificaCliente(Cliente cliente) {
+        for (Compra e : compras) {
+            if (e.getCliente().getCodigoCliente() == cliente.getCodigoCliente()) {
+                System.out.println("O cliente " + cliente.getNome() + " se encontra no histórico de compras.");
+                return;
             }
-        }   
-        if(i == 0){
-            System.out.println("O cliente não se encontra no histórico de compras.");
         }
-        
+        System.out.println("O cliente " + cliente.getNome() + "  não se encontra no histórico de compras.");
+
     }
 }

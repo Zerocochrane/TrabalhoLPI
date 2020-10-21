@@ -4,24 +4,24 @@ package com.mycompany.lpiproject;
  *
  * @author prfneto
  */
-public class Compra{
-    
+public class Compra {
+
     private double valor;
     private String data;
     private Cliente cliente;
-    private int i = 1;
+    private static int i = 1;
     private String codigoCompra;
-    
-    public Compra(double valor, String data, Cliente cliente){
+
+    public Compra(double valor, String data, Cliente cliente) {
         setValor(valor);
         setData(data);
         setCliente(cliente);
         setCodigoCompra(data + "-" + i);
         i++;
     }
-    
-    public void detalhesCompra(){
-        System.out.println("Compra realizada pelo(a) Sr(a) " + getCliente().getNome() + " no valor de R$" + getValor());
+
+    public void detalhesCompra() {
+        System.out.println(getCliente().getTratameto() + " " + getCliente().getNome() + " realizou uma compra no valor de R$" + getValor());
     }
 
     /**

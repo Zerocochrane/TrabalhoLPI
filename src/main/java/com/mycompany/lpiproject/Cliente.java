@@ -4,19 +4,21 @@ package com.mycompany.lpiproject;
  *
  * @author prfneto
  */
-public class Cliente {
+public abstract class Cliente {
     
     private String nome;
     private String eMail;
     private String telefone;
-    private int i = 1;
+    private char sexo;
+    private static int i = 1;
     private String codigoCliente;
     public int pontos = 0;
     
-    public Cliente(String nome, String eMail, String telefone){
+    public Cliente(String nome, String eMail, String telefone, char sexo){
         setNome(nome);
         seteMail(eMail);
         setTelefone(telefone);
+        setSexo(sexo);
         setCodigoCliente("C" + i);
         i++;
     }
@@ -93,4 +95,21 @@ public class Cliente {
             System.out.println("Quantidades de pontos insuficientes.");
         }
     }
+
+    /**
+     * @return the sexo
+     */
+    public char getSexo() {
+        return sexo;
+    }
+
+    /**
+     * @param sexo the sexo to set
+     */
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
+    
+    public abstract String getTratameto();
+    
 }
