@@ -8,12 +8,16 @@ public class Compra{
     
     public double valor;
     public String data;
-    public String cliente;
+    public Cliente cliente;
+    private int i = 1;
+    public String codigoCompra;
     
-    public Compra(double valor, String data, String cliente){
+    public Compra(double valor, String data, Cliente cliente){
         this.valor = valor;
         this.data = data;
         this.cliente = cliente;
+        this.codigoCompra = data + "-" + i;
+        i++;
     }
 
     /**
@@ -28,14 +32,12 @@ public class Compra{
     public String getData() {
         return data;
     }
-    /**
-     * @return the cliente
-     */
-    public String getCliente() {
-        return cliente;
+    
+    public String getCodigoCompra(){
+        return codigoCompra;
     }
     
-    public void detalhesCompra(Compra compra){
-        System.out.println("Compra realizada pelo(a) Sr(a) " + cliente + " no valor de R$" + valor);
+    public void detalhesCompra(){
+        System.out.println("Compra realizada pelo(a) Sr(a) " + cliente.nome + " no valor de R$" + valor);
     }
 }
