@@ -6,19 +6,27 @@ package com.mycompany.lpiproject;
  */
 public class Cliente {
     
-    public String nome;
-    public String eMail;
-    public String telefone;
+    private String nome;
+    private String eMail;
+    private String telefone;
     private int i = 1;
-    public String codigoCliente;
+    private String codigoCliente;
     public int pontos = 0;
     
     public Cliente(String nome, String eMail, String telefone){
-        this.nome = nome;
-        this.eMail = eMail;
-        this.telefone = telefone;
-        this.codigoCliente = "C" + i;
+        setNome(nome);
+        seteMail(eMail);
+        setTelefone(telefone);
+        setCodigoCliente("C" + i);
         i++;
+    }
+    
+    public void setPontos(int pontos){
+        this.pontos = pontos;
+    }
+    
+    public int getPontos(){
+        return pontos;
     }
 
     /**
@@ -29,10 +37,24 @@ public class Cliente {
     }
 
     /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
      * @return the eMail
      */
     public String geteMail() {
         return eMail;
+    }
+
+    /**
+     * @param eMail the eMail to set
+     */
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
     }
 
     /**
@@ -41,12 +63,34 @@ public class Cliente {
     public String getTelefone() {
         return telefone;
     }
-    
-    public void setPontos(int pontos){
-        this.pontos = pontos;
+
+    /**
+     * @param telefone the telefone to set
+     */
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    /**
+     * @return the codigoCliente
+     */
+    public String getCodigoCliente() {
+        return codigoCliente;
+    }
+
+    /**
+     * @param codigoCliente the codigoCliente to set
+     */
+    public void setCodigoCliente(String codigoCliente) {
+        this.codigoCliente = codigoCliente;
     }
     
-    public int getPontos(){
-        return pontos;
+    public void trnasferirPonto(Cliente clientea, Cliente clienteb, int pontosASeremTransferidos){
+        if (clientea.pontos >= pontosASeremTransferidos){
+            clientea.pontos = clientea.pontos - pontosASeremTransferidos;
+            clienteb.pontos = clienteb.pontos + pontosASeremTransferidos;
+        } else {
+            System.out.println("Quantidades de pontos insuficientes.");
+        }
     }
 }

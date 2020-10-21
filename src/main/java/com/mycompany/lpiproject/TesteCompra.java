@@ -1,5 +1,6 @@
-
 package com.mycompany.lpiproject;
+
+
 
 /**
  *
@@ -8,17 +9,17 @@ package com.mycompany.lpiproject;
 public class TesteCompra {
 
     public static void main(String[] args) {
+        
         Cliente cliente1 = new Cliente("Paulo", "prfneto@gmail.com", "(31)3232-3232");
-        Cliente cliente2 = new Cliente("Jose", "jose@gmail.com", "(32)3232-3232");
-        Cliente cliente3 = new Cliente("Joao", "joao@gmail.com", "(33)3232-3232");
-        Cliente cliente4 = new Cliente("Maria", "maria@gmail.com", "(34)3232-3232");
-        Cliente cliente5 = new Cliente("Ana", "ana@gmail.com", "(35)3232-3232");
+        Cliente cliente2 = new Cliente("Joao", "joao@gmail.com", "(33)3232-3232");
+        Cliente cliente3 = new Cliente("Maria", "maria@gmail.com", "(34)3232-3232");
+        Cliente cliente4 = new Cliente("Ana", "ana@gmail.com", "(35)3232-3232");
         
         Compra compra1 = new Compra(3000, "2020", cliente1);
         Compra compra2 = new Compra(7000, "2020", cliente1);
-        Compra compra3 = new Compra(5000, "2020", cliente3);
-        Compra compra4 = new Compra(6000, "2020", cliente4);
-        Compra compra5 = new Compra(4000, "2020", cliente5);
+        Compra compra3 = new Compra(5000, "2020", cliente2);
+        Compra compra4 = new Compra(6000, "2020", cliente3);
+        Compra compra5 = new Compra(4000, "2020", cliente4);
         
         historicoCompra historico = new historicoCompra();
         
@@ -42,8 +43,17 @@ public class TesteCompra {
         cliente1.setPontos(historico.pontoCliente(cliente1));
         System.out.println(cliente1.pontos);
         
+        historico.removerCompra(2);
         
+        historico.verificaCliente(cliente1);
         
+        Premios premio1 = new Premios("Bola", "Bola de futebol", 1);
+        Premios premio2 = new Premios("Carrinho", "carrinho de controle remoto", 2);
+        Premios premio3 = new Premios("GameBoy", "Video game portátil da Nintendo", 3);
+        Premios premio4 = new Premios("Arma de Chumbinho", "Arma de chumbiho, sem munição", 4);
+        
+        premio1.resgatarPremio(cliente1, premio1);
+        premio1.resgatarPremio(cliente1, premio2);
         
     }
     

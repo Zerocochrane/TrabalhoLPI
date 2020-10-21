@@ -6,18 +6,22 @@ package com.mycompany.lpiproject;
  */
 public class Compra{
     
-    public double valor;
-    public String data;
-    public Cliente cliente;
+    private double valor;
+    private String data;
+    private Cliente cliente;
     private int i = 1;
-    public String codigoCompra;
+    private String codigoCompra;
     
     public Compra(double valor, String data, Cliente cliente){
-        this.valor = valor;
-        this.data = data;
-        this.cliente = cliente;
-        this.codigoCompra = data + "-" + i;
+        setValor(valor);
+        setData(data);
+        setCliente(cliente);
+        setCodigoCompra(data + "-" + i);
         i++;
+    }
+    
+    public void detalhesCompra(){
+        System.out.println("Compra realizada pelo(a) Sr(a) " + getCliente().getNome() + " no valor de R$" + getValor());
     }
 
     /**
@@ -26,18 +30,53 @@ public class Compra{
     public double getValor() {
         return valor;
     }
+
+    /**
+     * @param valor the valor to set
+     */
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
     /**
      * @return the data
      */
     public String getData() {
         return data;
     }
-    
-    public String getCodigoCompra(){
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    /**
+     * @return the codigoCompra
+     */
+    public String getCodigoCompra() {
         return codigoCompra;
     }
-    
-    public void detalhesCompra(){
-        System.out.println("Compra realizada pelo(a) Sr(a) " + cliente.nome + " no valor de R$" + valor);
+
+    /**
+     * @param codigoCompra the codigoCompra to set
+     */
+    public void setCodigoCompra(String codigoCompra) {
+        this.codigoCompra = codigoCompra;
     }
 }
