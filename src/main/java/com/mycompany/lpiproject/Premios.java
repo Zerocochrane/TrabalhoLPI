@@ -57,12 +57,12 @@ public class Premios {
         this.preco = preco;
     }
     
-    public void resgatarPremio(Cliente cliente, Premios premio){
+    public void resgatarPremio(Cliente cliente, Premios premio) throws PontosInvalidosException{
         if(cliente.pontos >= premio.preco){
             System.out.println("Premio resgatado");
             cliente.setPontos(cliente.getPontos()-premio.preco);
         } else{
-            System.out.println("Cliente " + cliente.getNome() + " possui quantidade insuficiente de pontos");
+            throw new PontosInvalidosException("Quantidades de pontos insuficientes");
         }
     }
     

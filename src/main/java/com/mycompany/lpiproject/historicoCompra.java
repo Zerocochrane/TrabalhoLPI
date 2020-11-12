@@ -1,6 +1,6 @@
 package com.mycompany.lpiproject;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -11,12 +11,8 @@ import java.util.Scanner;
 public class historicoCompra {
 
     ArrayList<Compra> compras = new ArrayList<Compra>();
+    ArrayList<Compra> semRepeticoes = new ArrayList<Compra>();
     private int j = 0;
-    private double total = 0;
-    private double media = 0;
-    private double totalCliente = 0;
-    private int ponto;
-    private int i = 0;
 
     public void adicionarHistorico(Compra compra) {
         compras.add(compra);
@@ -24,6 +20,7 @@ public class historicoCompra {
     }
 
     public double valorTotal() {
+        double total = 0;
         for (Compra e : compras) {
             total = total + e.getValor();
         }
@@ -31,6 +28,7 @@ public class historicoCompra {
     }
 
     public double valorMedio() {
+        double media = 0;
         for (Compra e : compras) {
             media = media + e.getValor();
         }
@@ -38,8 +36,9 @@ public class historicoCompra {
     }
 
     public double compraCliente(Cliente cliente) {
+        double totalCliente = 0;
         for (Compra e : compras) {
-            if (e.getCliente().getNome() == cliente.getNome()) {
+            if (e.getCliente().getCodigoCliente() == cliente.getCodigoCliente()) {
                 totalCliente = totalCliente + e.getValor();
             }
         }
@@ -47,7 +46,7 @@ public class historicoCompra {
     }
 
     public int pontoCliente(Cliente cliente) {
-        ponto = 0;
+        int ponto = 0;
         for (Compra e : compras) {
             if (e.getCliente().getCodigoCliente() == cliente.getCodigoCliente()) {
                 ponto++;
@@ -75,4 +74,47 @@ public class historicoCompra {
         System.out.println("O cliente " + cliente.getNome() + "  não se encontra no histórico de compras.");
 
     }
+    
+    public void valorCompraCrescente(){
+        Collections.sort(compras, new SortByAscendingCompra());
+        System.out.println("Lista organizada de maneira crescete do valor da compra: ");
+        for (Compra e : compras) {
+            System.out.println("R$" + e.getValor());
+        }
+    }
+    
+    public void valorCompraDecrescente(){
+        Collections.sort(compras, new SortByAscendingCompra());
+        Collections.reverse(compras);
+        System.out.println("Lista organizada de maneira decrescente do valor da compra: ");
+        for (Compra e : compras) {
+            System.out.println("R$" + e.getValor());
+        }
+    }
+    
+    public void nomeCrescente(){
+        Collections.sort(compras, new SortByAscendingName());
+        System.out.println("Lista organizada de maneira alfabética pelo  nome do Cliente: ");
+        for (Compra e : compras) {
+            System.out.println(e.getCliente().getNome() + ": R$"+ e.getValor());
+        }
+    }
+    
+    class SortByAscendingCompra implements Comparator<Compra>{
+        @Override
+        public int compare(Compra a, Compra b){
+            return (int)a.getValor() - (int)b.getValor();
+        }
+        
+    }
+    
+    class SortByAscendingName implements Comparator<Compra>{
+        @Override
+        public int compare(Compra a, Compra b){
+            int f = a.getCliente().getNome().compareTo(b.getCliente().getNome());
+            return f;
+        }
+        
+    }
+    
 }

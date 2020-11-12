@@ -8,9 +8,10 @@ public class PessoaFisica extends Cliente {
 
     private String CPF;
 
-    public PessoaFisica(String nome, String eMail, String telefone, char sexo, String CPF) {
-        super(nome, eMail, telefone, sexo);
+    public PessoaFisica(String nome, String eMail, String telefone, String sexo, String CPF) {
+        super(nome, eMail, telefone, sexo, "Física");
         setCPF(CPF);
+        
     }
 
     /**
@@ -29,7 +30,7 @@ public class PessoaFisica extends Cliente {
 
     @Override
     public String getTratameto() {
-        if (getSexo() == 'M') {
+        if (getSexo() == "M") {
             return "Senhor";
         } else {
             return "Senhora";

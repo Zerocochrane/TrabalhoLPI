@@ -9,8 +9,8 @@ public class PessoaJuridica extends Cliente {
     private String descricao;
     private String CNPJ;
 
-    public PessoaJuridica(String nome, String eMail, String telefone, char sexo, String descricao, String CNPJ) {
-        super(nome, eMail, telefone, sexo);
+    public PessoaJuridica(String nome, String eMail, String telefone, String sexo, String descricao, String CNPJ) {
+        super(nome, eMail, telefone, sexo, "Jurídico");
         setDescricao(descricao);
         setCNPJ(CNPJ);
     }
@@ -45,7 +45,7 @@ public class PessoaJuridica extends Cliente {
 
     @Override
     public String getTratameto() {
-        if (getSexo() == 'M') {
+        if (getSexo() == "M") {
             return "Colaborador";
         } else {
             return "Colaboradora";
