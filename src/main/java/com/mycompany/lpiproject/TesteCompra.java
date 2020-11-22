@@ -78,6 +78,22 @@ public class TesteCompra {
         historico.valorCompraDecrescente();
         
         historico.nomeCrescente();
+        
+        Rank clientes = new Rank();
+        
+        clientes.adicionarCliente(cliente1);
+        clientes.adicionarCliente(cliente2);
+        clientes.adicionarCliente(cliente3);
+        clientes.adicionarCliente(cliente4);
+        
+        clientes.determinarRank(cliente1, historico);
+        clientes.determinarRank(cliente2, historico);
+        clientes.determinarRank(cliente3, historico);
+        clientes.determinarRank(cliente4, historico);
+        
+        clientes.imprimirLista();
+        
+        
     }
     
 
