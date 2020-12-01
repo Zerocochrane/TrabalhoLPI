@@ -14,7 +14,6 @@ public abstract class Cliente {
     private String codigoCliente;
     public int pontos = 0;
     private String tipo;
-    private String rank;
     
     public Cliente(String nome, String eMail, String telefone, String sexo, String tipo){
         setNome(nome);
@@ -128,20 +127,6 @@ public abstract class Cliente {
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    /**
-     * @return the rank
-     */
-    public String getRank() {
-        return rank;
-    }
-
-    /**
-     * @param rank the rank to set
-     */
-    public void setRank(String rank) {
-        this.rank = rank;
     }
     
     

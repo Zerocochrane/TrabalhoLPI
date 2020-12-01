@@ -1,52 +1,49 @@
 package com.mycompany.lpiproject;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author prfneto
  */
 public class Rank {
-    ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-    
-    public void adicionarCliente(Cliente c) {
-        clientes.add(c);
-    }
-    
-    public static void determinarRank(Cliente c, historicoCompra h){
+    static Map<Cliente, String> ranks = new HashMap<Cliente, String>();
+
+    public static void determinarRank(Cliente c, HistoricoCompra h){
         double totalCliente = 0;
-        for (Compra e : h.compras) {
+        for (Compra e : h.getLista()) {
             if (e.getCliente().getCodigoCliente() == c.getCodigoCliente()) {
                 totalCliente = totalCliente + e.getValor();
             }
         }
         if (totalCliente > 3000){
-            c.setRank("A");
+            ranks.put(c, "A");
         }
         if (totalCliente <= 3000 && totalCliente >= 1000){
-            c.setRank("B");
+            ranks.put(c, "B");
         }
         if (totalCliente < 1000){
-            c.setRank("C");
+            ranks.put(c, "C");
         }
     }
     
-    public static void mostrarRank(Cliente c, historicoCompra h){
-        for (Compra e : h.compras) {
+    public static void mostrarRank(Cliente c, HistoricoCompra h){
+        for (Compra e : h.getLista()) {
             if (e.getCliente().getCodigoCliente() == c.getCodigoCliente()) {
-                System.out.println("O cliente " + c.getNome() + " possui o rank: " + c.getRank());
+                System.out.println("O cliente " + c.getNome() + " possui o rank: " + ranks.get(c));
             }
         }
     }
     
     public void imprimirLista(){
-        for (Cliente e : clientes){
-            System.out.println("O cliente " + e.getNome() + " possui o rank: " + e.getRank());
+        for (Cliente e : ranks.keySet()){
+            System.out.println("O cliente " + e.getNome() + " possui o rank: " + ranks.get(e));
         }
     }
     
-    public static void atualizarRank(historicoCompra h){
-        for (Compra e : h.compras) {
+    public static void atualizarRank(HistoricoCompra h){
+        for (Compra e : h.getLista()) {
             determinarRank(e.getCliente(), h);
         }
     }

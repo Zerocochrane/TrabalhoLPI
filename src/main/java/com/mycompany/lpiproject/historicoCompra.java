@@ -8,20 +8,11 @@ import java.util.Scanner;
  *
  * @author prfneto
  */
-public class historicoCompra {
-
-    ArrayList<Compra> compras = new ArrayList<Compra>();
-    ArrayList<Compra> semRepeticoes = new ArrayList<Compra>();
-    private int j = 0;
-
-    public void adicionarHistorico(Compra compra) {
-        compras.add(compra);
-        j++;
-    }
+public class HistoricoCompra extends Lista<Compra>{
 
     public double valorTotal() {
         double total = 0;
-        for (Compra e : compras) {
+        for (Compra e : this.lista) {
             total = total + e.getValor();
         }
         return total;
@@ -29,15 +20,15 @@ public class historicoCompra {
 
     public double valorMedio() {
         double media = 0;
-        for (Compra e : compras) {
+        for (Compra e : this.lista) {
             media = media + e.getValor();
         }
-        return media / j;
+        return media / this.lista.size();
     }
 
     public double compraCliente(Cliente cliente) {
         double totalCliente = 0;
-        for (Compra e : compras) {
+        for (Compra e : this.lista) {
             if (e.getCliente().getCodigoCliente() == cliente.getCodigoCliente()) {
                 totalCliente = totalCliente + e.getValor();
             }
@@ -47,7 +38,7 @@ public class historicoCompra {
 
     public int pontoCliente(Cliente cliente) {
         int ponto = 0;
-        for (Compra e : compras) {
+        for (Compra e : this.lista) {
             if (e.getCliente().getCodigoCliente() == cliente.getCodigoCliente()) {
                 ponto++;
             }
@@ -56,16 +47,8 @@ public class historicoCompra {
         return ponto;
     }
 
-    public void removerCompra(int posicao) {
-        try {
-            compras.remove(posicao);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Erro: posição inválida");
-        }
-    }
-
     public void verificaCliente(Cliente cliente) {
-        for (Compra e : compras) {
+        for (Compra e : this.lista) {
             if (e.getCliente().getCodigoCliente() == cliente.getCodigoCliente()) {
                 System.out.println("O cliente " + cliente.getNome() + " se encontra no histórico de compras.");
                 return;
@@ -76,26 +59,26 @@ public class historicoCompra {
     }
     
     public void valorCompraCrescente(){
-        Collections.sort(compras, new SortByAscendingCompra());
+        Collections.sort(this.lista, new SortByAscendingCompra());
         System.out.println("Lista organizada de maneira crescete do valor da compra: ");
-        for (Compra e : compras) {
+        for (Compra e : this.lista) {
             System.out.println("R$" + e.getValor());
         }
     }
     
     public void valorCompraDecrescente(){
-        Collections.sort(compras, new SortByAscendingCompra());
-        Collections.reverse(compras);
+        Collections.sort(this.lista, new SortByAscendingCompra());
+        Collections.reverse(this.lista);
         System.out.println("Lista organizada de maneira decrescente do valor da compra: ");
-        for (Compra e : compras) {
+        for (Compra e : this.lista) {
             System.out.println("R$" + e.getValor());
         }
     }
     
     public void nomeCrescente(){
-        Collections.sort(compras, new SortByAscendingName());
+        Collections.sort(this.lista, new SortByAscendingName());
         System.out.println("Lista organizada de maneira alfabética pelo  nome do Cliente: ");
-        for (Compra e : compras) {
+        for (Compra e : this.lista) {
             System.out.println(e.getCliente().getNome() + ": R$"+ e.getValor());
         }
     }

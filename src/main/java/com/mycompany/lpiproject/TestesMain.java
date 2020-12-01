@@ -1,5 +1,4 @@
 package com.mycompany.lpiproject;
-import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -7,7 +6,7 @@ import java.util.logging.Logger;
  *
  * @author prfneto
  */
-public class TesteCompra {
+public class TestesMain {
 
     public static void main(String[] args) {
 
@@ -22,7 +21,7 @@ public class TesteCompra {
         Compra compra4 = new Compra(6000, "2020", cliente3);
         Compra compra5 = new Compra(4000, "2020", cliente4);
 
-        historicoCompra historico = new historicoCompra();
+        HistoricoCompra historico = new HistoricoCompra();
 
         compra1.detalhesCompra();
         compra2.detalhesCompra();
@@ -30,11 +29,11 @@ public class TesteCompra {
         compra4.detalhesCompra();
         compra5.detalhesCompra();
 
-        historico.adicionarHistorico(compra1);
-        historico.adicionarHistorico(compra2);
-        historico.adicionarHistorico(compra3);
-        historico.adicionarHistorico(compra4);
-        historico.adicionarHistorico(compra5);
+        historico.adicionar(compra1);
+        historico.adicionar(compra2);
+        historico.adicionar(compra3);
+        historico.adicionar(compra4);
+        historico.adicionar(compra5);
 
         System.out.println("O valor total das compre é: R$" + historico.valorTotal());
         System.out.println("O valor médio das compras é: R$" + historico.valorMedio());
@@ -48,10 +47,10 @@ public class TesteCompra {
         try {
             Cliente.transferirPonto(cliente1, cliente2, 2);
         } catch (PontosInvalidosException ex) {
-            Logger.getLogger(TesteCompra.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestesMain.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        historico.removerCompra(1);
+        historico.remover(1);
 
         historico.verificaCliente(cliente1);
 
@@ -63,12 +62,12 @@ public class TesteCompra {
         try {
             premio1.resgatarPremio(cliente1, premio1);
         } catch (PontosInvalidosException ex) {
-            Logger.getLogger(TesteCompra.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestesMain.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             premio1.resgatarPremio(cliente1, premio2);
         } catch (PontosInvalidosException ex) {
-            Logger.getLogger(TesteCompra.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestesMain.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         IndentificadorDeCliente.verifica(cliente1);
@@ -79,22 +78,18 @@ public class TesteCompra {
         
         historico.nomeCrescente();
         
-        Rank clientes = new Rank();
+        Rank ranks = new Rank();
         
-        clientes.adicionarCliente(cliente1);
-        clientes.adicionarCliente(cliente2);
-        clientes.adicionarCliente(cliente3);
-        clientes.adicionarCliente(cliente4);
+        ranks.determinarRank(cliente1, historico);
+        ranks.determinarRank(cliente2, historico);
+        ranks.determinarRank(cliente3, historico);
+        ranks.determinarRank(cliente4, historico);
         
-        clientes.determinarRank(cliente1, historico);
-        clientes.determinarRank(cliente2, historico);
-        clientes.determinarRank(cliente3, historico);
-        clientes.determinarRank(cliente4, historico);
-        
-        clientes.imprimirLista();
+        ranks.imprimirLista();
         
         
     }
-    
+
+
 
 }
