@@ -9,7 +9,7 @@ public class Compra {
     private double valor;
     private String data;
     private Cliente cliente;
-    private static int i = 1;
+    private int i = 1;
     private String codigoCompra;
 
     public Compra(double valor, String data, Cliente cliente) {
